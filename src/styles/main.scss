@@ -1,10 +1,53 @@
-$bgColor: rgb(0, 110, 255);
+@use "variables";
+@use "hero";
 
-body {
-  background-color: $bgColor;
-  margin: 0 auto;
+@mixin text($fontSize: 16px) {
+  font-size: $fontSize;
+  line-height: $fontSize + 10px;
+  color: variables.$mainTextColor;
 }
 
-h1 {
-  font-size: 16px;
+@mixin title($fontSize: 40px) {
+  @include text($fontSize);
+  color: variables.$secundaryTextColor;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: variables.$backgroundColor;
+}
+
+.text--big {
+  @include text(18px);
+}
+
+.text {
+  @include text();
+}
+
+.text--small {
+  @include text(12px);
+}
+
+.title--big {
+  @include title(44px);
+}
+
+.title {
+  @include title();
+}
+
+.title--small {
+  @include title(28px);
+}
+
+.link-text {
+  @include text(18px);
+  color: variables.$secundaryTextColor;
+  text-decoration: underline;
 }
