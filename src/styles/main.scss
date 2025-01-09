@@ -4,6 +4,7 @@
 @use "plans";
 @use "available-devices";
 @use "faq";
+@use "sass:color";
 
 @font-face {
   font-family: Avenir;
@@ -86,7 +87,10 @@ body {
   border: 1px solid variables.$primaryBackgroundColorButton;
 
   &:hover {
-    background-color: lighten(variables.$primaryBackgroundColorButton, 3%);
+    background-color: color.adjust(
+      variables.$primaryBackgroundColorButton,
+      $lightness: 3%
+    );
   }
 
   &--secondary {
@@ -94,7 +98,10 @@ body {
     border-color: variables.$secundaryBackgroundColorButton;
 
     &:hover {
-      background-color: lighten(variables.$secundaryBackgroundColorButton, 3%);
+      background-color: color.adjust(
+        variables.$secundaryBackgroundColorButton,
+        $lightness: 3%
+      );
     }
   }
 
