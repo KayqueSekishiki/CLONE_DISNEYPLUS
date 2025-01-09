@@ -1,6 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll("[data-tab-button]");
   const questions = document.querySelectorAll("[data-faq-question]");
+  const heroSection = document.querySelector(".hero");
+  const heightHero = heroSection.clientHeight;
+
+  window.addEventListener("scroll", () => {
+    const position = window.scrollY;
+
+    if (position < heightHero) {
+      hideHeaderElements();
+    } else {
+      showHeaderElements();
+    }
+  });
 
   buttons.forEach((button) => {
     button.addEventListener("click", (button) => {
@@ -21,11 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function toggleQuestion(element) {
-  const targetClass = "faq__questions__item--is-open";
-  const parentElement = element.target.parentNode;
+function hideHeaderElements() {
+  const header = document.querySelector("header");
+  header.classList.add("header--is-hidden");
+}
 
-  parentElement.classList.toggle(targetClass);
+function showHeaderElements() {
+  const header = document.querySelector("header");
+  header.classList.remove("header--is-hidden");
 }
 
 const removeActiveButton = () => {
@@ -43,3 +58,10 @@ const hideAllTabs = () => {
     tab.classList.remove("shows__list--is-active");
   });
 };
+
+function toggleQuestion(element) {
+  const targetClass = "faq__questions__item--is-open";
+  const parentElement = element.target.parentNode;
+
+  parentElement.classList.toggle(targetClass);
+}
